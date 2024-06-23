@@ -1,5 +1,4 @@
 import os
-from pathlib import Path
 from tkinter import filedialog
 import subprocess
 import datetime
@@ -14,17 +13,14 @@ class SyncMine:
         self._login = login
         self._passw = passw
 
-    def get_up_dir(self):
-        if os.path.exists("./log.txt"):
-            with open("log.txt", "r") as file:
+    def get_dir(self):
+        if os.path.exists("./modules/log.txt"):
+            with open("./modules/log.txt", "r") as file:
                 self._dir = file.read()
         else:
             self._dir = filedialog.askdirectory()
-            with open("log.txt", "x") as file:
+            with open("./modules/log.txt", "x") as file:
                 file.write(self._dir)
-
-    def get_down_dir(self):
-        self._down_dir = filedialog.askdirectory()
 
     def login(self):
         subprocess.run(["mega-logout"])
@@ -54,8 +50,8 @@ class SyncMine:
         subprocess.run(["mega-get", str(save_selected), str(self._dir)])
 
 
-sync_mine = SyncMine("fxflat16@gmail.com", "minesave10")
-sync_mine.login()
-sync_mine.get_up_dir()
-sync_mine.upload()
+# sync_mine = SyncMine("fxflat16@gmail.com", "minesave10")
+# sync_mine.login()
+# sync_mine.get_dir()
+# sync_mine.upload()
 # sync_mine.download()
