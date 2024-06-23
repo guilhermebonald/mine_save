@@ -5,17 +5,8 @@ from flet import ImageFit
 process = []
 
 
-def check_process(process_name: str):
-    for proc in psutil.process_iter():
-        process.append(proc.name())
-
-    if process_name.lower() in process:
-        return True
-    else:
-        return False
-
-
 def main(page: ft.Page):
+
     page.window_width = 500  # window's width is 200 px
     page.window_height = 500  # window's height is 200 px
     page.window_resizable = True

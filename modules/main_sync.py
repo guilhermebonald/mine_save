@@ -55,7 +55,7 @@ class SyncMine:
 
 
 sync_mine = SyncMine("fxflat16@gmail.com", "minesave10")
-# sync_mine.login()
+sync_mine.login()
 sync_mine.get_up_dir()
-# sync_mine.upload()
+sync_mine.upload()
 # sync_mine.download()

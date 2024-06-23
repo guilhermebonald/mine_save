@@ -1,2 +1,0 @@
-upload: /home/bonald/Zomboid/Saves
-download: /home/bonald/Zomboid/Sav

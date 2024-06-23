@@ -4,11 +4,11 @@ import subprocess
 import os
 
 
-class SaveMineWindows:
+class MegaInstall:
     def __init__(self) -> None:
         pass
 
-    def check_installation(self):
+    def is_installed(self):
         # install check
         os.environ["PATH"] += (
             os.pathsep + os.environ["LOCALAPPDATA"] + "\\MEGAcmd"
@@ -39,13 +39,10 @@ class SaveMineWindows:
         subprocess.run(["MEGAcmdSetup", "/S"], shell=True)
 
 
-mine = SaveMineWindows()
-if mine.check_installation():
-    os.environ["PATH"] += (
-        os.pathsep + os.environ["LOCALAPPDATA"] + "\\MEGAcmd"
-    )  # set environ path by Mega Docs
-    ls = subprocess.run(["mega-ls"], shell=True, capture_output=True, text=True)
-    print(ls.stdout)
+mine = MegaInstall()
+if mine.is_installed():
+    # if installed here
+    pass
 else:
     mine.download_mega()
     mine.install_mega()
