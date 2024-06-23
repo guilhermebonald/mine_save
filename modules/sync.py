@@ -10,19 +10,18 @@ class SyncMine:
     _DH_FORMATADA = _DH_ATUAL.strftime("%d-%m-%Y %H:%M:%S")
 
     def __init__(self, login: str, passw: str):
-        self._up_dir = None
-        self._down_dir = None
+        self._dir = None
         self._login = login
         self._passw = passw
 
     def get_up_dir(self):
         if os.path.exists("./log.txt"):
             with open("log.txt", "r") as file:
-                self._up_dir = file.read()
+                self._dir = file.read()
         else:
-            self._up_dir = filedialog.askdirectory()
+            self._dir = filedialog.askdirectory()
             with open("log.txt", "x") as file:
-                file.write(self._up_dir)
+                file.write(self._dir)
 
     def get_down_dir(self):
         self._down_dir = filedialog.askdirectory()
@@ -35,11 +34,14 @@ class SyncMine:
     #     subprocess.run(["mega-rm", "-rf", "/save_mine"])
 
     def upload(self):
-        subprocess.run(["mega-put", str(self._up_dir), f"/{self._DH_FORMATADA}"])
+        subprocess.run(["mega-put", str(self._dir), f"/{self._DH_FORMATADA}"])
 
     def download(self):
+        # Get Mega Dirs
         saves = subprocess.run(["mega-ls"], capture_output=True, text=True)
         dir_names = saves.stdout.splitlines()
+
+        # Get User option
         n = 0
         for i in dir_names:
             print(f"{n} : {i}")
@@ -48,11 +50,12 @@ class SyncMine:
         option = int(input("\nSave: "))
         save_selected = dir_names[option]
         print(f"Selecionado: {save_selected}")
-        subprocess.run(["mega-get", str(save_selected), str(self._down_dir)])
+
+        subprocess.run(["mega-get", str(save_selected), str(self._dir)])
 
 
 sync_mine = SyncMine("fxflat16@gmail.com", "minesave10")
-sync_mine.login()
+# sync_mine.login()
 sync_mine.get_up_dir()
-sync_mine.upload()
+# sync_mine.upload()
 # sync_mine.download()

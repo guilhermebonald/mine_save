@@ -1,1 +1,2 @@
-/home/bonald/Zomboid/Saves
+upload: /home/bonald/Zomboid/Saves
+download: /home/bonald/Zomboid/Sav
